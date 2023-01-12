@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>지도 레이아웃</title>
+	<script src="../js/common/jquery/jquery-3.4.1.min.js"></script>
+	<!--jquery ui-->
+	<script src="../js/common/jquery-ui/jquery-ui.js"></script>
+	<link rel="stylesheet" href="../js/common/jquery-ui/jquery-ui.css">
+	<!--scrollbar-->
+	<script src="../js/plugin/mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+	<link rel="stylesheet" href="../js/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+	<!--style-->
+	<script src="../js/ui.js"></script>
+	<link rel="stylesheet" href="../css/common/common.css">
+	<link rel="stylesheet" href="../css/common.css">
+
+	<!-- ol7 -->
+	<link rel="stylesheet" href="../js/plugin/ol7.1.0/ol.css">
+	<script src="../js/plugin/ol7.1.0/dist/ol.js"></script>
+
+	<!-- map -->
+	<!-- <script src="../js/map.js"></script> -->
+
+
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h1 class="logo">
+				<a href="javascript:void(0);"><img src="/layout/images/common/logo-white.svg" alt=""></a>
+			</h1>
+			<div class="util-box">
+				<div class="user">
+					<strong>홍길동(토지과)</strong>님
+				</div>
+				<button type="button" class="admin-btn">관리자</button>
+				<button type="button" class="logout-btn">LOGOUT</button>
+			</div>
+		</div>
+		<div id="container">
+			<div class="map-header">
+				<div class="map-info">
+					<span class="map-add">강원 평창군 평창읍</span>
+					<span class="map-weather">
+						<span class="nowwt">현재기온 : <strong>25.3℃</strong></span>
+						<span class="temperature">(<span class="min">10℃</span>/<span class="max">27℃</span>)</span>
+						<span class="dust">미세먼지 : <strong>67</strong></span>
+						<span class="ultradust">초미세먼지 : <strong>45</strong></span>
+					</span>
+				</div>
+				<div class="map-type">
+					<div class="tool-box">
+						<span class="tool-btn">
+							<input type="radio" id="divResetBtn" name="divBtn">
+							<label for="divResetBtn">초기화</label>
+						</span>
+						<span class="tool-btn">
+							<input type="radio" id="div2Btn" name="divBtn">
+							<label for="div2Btn">2분할</label>
+						</span>
+						<span class="tool-btn">
+							<input type="radio" id="div4Btn" name="divBtn">
+							<label for="div4Btn">4분할</label>
+						</span>
+						<button type="button" class="tool-btn">로드뷰</button>
+						<button type="button" class="tool-btn">인쇄</button>
+					</div>
+				</div>
+			</div> 
+			<div class="map-wrap">
+				<div class="map-aside">
+					<div class="map-menu">
+						<ul class="menu-bar">
+							<li><button type="button" class="bar-btn" data-menu="barCont01">검색</button></li>
+							<li><button type="button" class="bar-btn" data-menu="barCont02">레이어</button></li>
+							<li><button type="button" class="bar-btn" data-menu="barCont03">분석</button></li>
+						</ul>
+						<div class="menu-cont">
+							<div class="bar-cont barCont01">
+								<div class="cont-head">검색</div>
+								<div class="cont-body">
+									<ul class="tab-group" data-tab="tabSrch">
+										<li class="active"><button type="button" class="tab-link">명칭</button></li>
+										<li><button type="button" class="tab-link">tab2</button></li>
+										<li><button type="button" class="tab-link">tab3</button></li>
+									</ul>
+									<div class="tab-content" data-tab="tabSrch">
+										<div>
+											<div class="search-box">
+												<div class="srch-group">
+													<input type="text" class="form-control" placeholder="검색어 입력">
+													<button type="button" class="srch-btn" title="검색"></button>
+												</div>
+											</div>
+											<!-- 검색어 입력 전 / 검색 결과가 없는 경우
+											<div class="search-nodata">
+												<p>검색어를 입력해주세요</p>
+											</div> 
+											-->
+											<!-- 검색 결과가 있는 경우 -->
+											<div class="search-result">
+												<p class="srch-num">검색결과 : <strong>111</strong></p>
+												<div class="mCustomScrollbar-y">
+													<ul class="srch-result-list">
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77 강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2 평창읍 하리 210-2 평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="pagination">
+													<a href="javascript:void(0);" class="prev" title="이전"></a>
+													<strong class="current">1</strong>
+													<a href="javascript:void(0);">2</a>
+													<a href="javascript:void(0);">3</a>
+													<a href="javascript:void(0);">4</a>
+													<a href="javascript:void(0);">5</a>
+													<a href="javascript:void(0);" class="next" title="다음"></a>
+												</div>
+											</div>
+										</div>
+										<div>tab2</div>
+										<div>tab3</div>
+									</div>
+								</div>
+							</div>
+							<div class="bar-cont barCont02">
+								<div class="cont-head">레이어</div>
+								<div class="cont-body">
+									<div class="mCustomScrollbar-y">
+										<ul class="layer-list">
+											<li>
+												<div class="layer-dep1-tit">
+													<span class="form-checkbox text">
+														<input type="checkbox" id="layer1">
+														<label for="layer1">건물</label>
+													</span>
+													<button type="button" class="layer-list-fold" title="열기"></button>
+												</div>
+												<ul class="layer-dep2-list">
+													<li>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer1-1">
+															<label for="layer1-1">건물</label>
+														</span>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<div class="layer-dep1-tit">
+													<span class="form-checkbox text">
+														<input type="checkbox" id="layer2">
+														<label for="layer2">교통</label>
+													</span>
+													<button type="button" class="layer-list-fold" title="열기"></button>
+												</div>
+												<ul class="layer-dep2-list">
+													<li>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer2-1">
+															<label for="layer2-1">교량</label>
+														</span>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer2-2">
+															<label for="layer2-2">교량</label>
+														</span>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="bar-cont barCont03">
+								<div class="cont-head">분석</div>
+								<div class="cont-body">
+									<div class="mCustomScrollbar-y">
+										<ul class="anal-list">
+											<li><button type="button" class="btn" data-popup="popup-sunlight">일조권분석</button></li>
+											<li><button type="button" class="btn" data-popup="popup-layout">기본 팝업</button></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="menu-cont-btn" title="열기"></button>
+						</div>
+					</div>
+				</div>
+				<div class="map-tool">
+					<button type="button" class="map-tool-btn initial" title="초기화"></button>
+					<div class="btn-group">
+						<button type="button" class="map-tool-btn distance" title="거리"></button>
+						<button type="button" class="map-tool-btn area" title="면적"></button>
+						<button type="button" class="map-tool-btn height" title="높이"></button>
+						<button type="button" class="map-tool-btn move" title="이동"></button>
+						<button type="button" class="map-tool-btn landscape" title="경관보기"></button>
+						<button type="button" class="map-tool-btn visibility" title="가시권보기"></button>
+						<button type="button" class="map-tool-btn sunlight" data-popup="popup-sunlight" title="일조권보기"></button>
+					</div>
+				</div>
+				<div class="map-control">
+					<button type="button" class="compass-btn"><span class="compass" style="transform: rotate(0deg);"></span></button>
+					<div class="ctrl-group zoom">
+						<button type="button" onclick="Javascript:handleZoomInClick()" class="ctrl-btn zoomin">+</button>
+						<button type="button" onclick="Javascript:handleZoomOutClick()" class="ctrl-btn zoomout">-</button>
+					</div>
+					<button type="button" class="ctrl-btn earth" title="지구"></button>
+					<div class="ctrl-group dimension">
+						<span class="ctrl-radio">
+							<input type="radio" id="type2d" name="ctrlType" checked="checked">
+							<label for="type2d">2D</label>
+						</span>
+						<span class="ctrl-radio">
+							<input type="radio" id="type3d" name="ctrlType">
+							<label for="type3d">3D</label>
+						</span>
+					</div>
+				</div>
+				<div id="map1" class="map"></div>
+			</div>
+			<div class="map-wrap div2">
+				<div class="map-aside">
+					<div class="map-menu">
+						<ul class="menu-bar">
+							<li><button type="button" class="bar-btn" data-menu="barCont2-01">검색</button></li>
+							<li><button type="button" class="bar-btn" data-menu="barCont2-02">레이어</button></li>
+							<li><button type="button" class="bar-btn" data-menu="barCont2-03">분석</button></li>
+						</ul>
+						<div class="menu-cont">
+							<div class="bar-cont barCont2-01">
+								<div class="cont-head">검색</div>
+								<div class="cont-body">
+									<ul class="tab-group" data-tab="tabSrch">
+										<li class="active"><button type="button" class="tab-link">명칭</button></li>
+										<li><button type="button" class="tab-link">tab2</button></li>
+										<li><button type="button" class="tab-link">tab3</button></li>
+									</ul>
+									<div class="tab-content" data-tab="tabSrch">
+										<div>
+											<div class="search-box">
+												<div class="srch-group">
+													<input type="text" class="form-control" placeholder="검색어 입력">
+													<button type="button" class="srch-btn" title="검색"></button>
+												</div>
+											</div>
+											<!-- 검색어 입력 전 / 검색 결과가 없는 경우
+											<div class="search-nodata">
+												<p>검색어를 입력해주세요</p>
+											</div> 
+											-->
+											<!-- 검색 결과가 있는 경우 -->
+											<div class="search-result">
+												<p class="srch-num">검색결과 : <strong>111</strong></p>
+												<div class="mCustomScrollbar-y">
+													<ul class="srch-result-list">
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77 강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2 평창읍 하리 210-2 평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="pagination">
+													<a href="javascript:void(0);" class="prev" title="이전"></a>
+													<strong class="current">1</strong>
+													<a href="javascript:void(0);">2</a>
+													<a href="javascript:void(0);">3</a>
+													<a href="javascript:void(0);">4</a>
+													<a href="javascript:void(0);">5</a>
+													<a href="javascript:void(0);" class="next" title="다음"></a>
+												</div>
+											</div>
+										</div>
+										<div>tab2</div>
+										<div>tab3</div>
+									</div>
+								</div>
+							</div>
+							<div class="bar-cont barCont2-02">
+								<div class="cont-head">레이어</div>
+								<div class="cont-body">
+									<div class="mCustomScrollbar-y">
+										<ul class="layer-list">
+											<li>
+												<div class="layer-dep1-tit">
+													<span class="form-checkbox text">
+														<input type="checkbox" id="layer1">
+														<label for="layer1">건물</label>
+													</span>
+													<button type="button" class="layer-list-fold" title="열기"></button>
+												</div>
+												<ul class="layer-dep2-list">
+													<li>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer1-1">
+															<label for="layer1-1">건물</label>
+														</span>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<div class="layer-dep1-tit">
+													<span class="form-checkbox text">
+														<input type="checkbox" id="layer2">
+														<label for="layer2">교통</label>
+													</span>
+													<button type="button" class="layer-list-fold" title="열기"></button>
+												</div>
+												<ul class="layer-dep2-list">
+													<li>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer2-1">
+															<label for="layer2-1">교량</label>
+														</span>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer2-1">
+															<label for="layer2-1">교량</label>
+														</span>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="bar-cont barCont2-03">
+								<div class="cont-head">분석</div>
+								<div class="cont-body">
+									<div class="mCustomScrollbar-y">
+										<ul class="anal-list">
+											<li><button type="button" class="btn" data-popup="popup-sunlight">일조권분석</button></li>
+											<li><button type="button" class="btn" data-popup="popup-layout">기본 팝업</button></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="menu-cont-btn" title="열기"></button>
+						</div>
+					</div>
+				</div>
+				<div class="map-tool">
+					<button type="button" class="map-tool-btn initial" title="초기화"></button>
+					<div class="btn-group">
+						<button type="button" class="map-tool-btn distance" title="거리"></button>
+						<button type="button" class="map-tool-btn area" title="면적"></button>
+						<button type="button" class="map-tool-btn height" title="높이"></button>
+						<button type="button" class="map-tool-btn move" title="이동"></button>
+						<button type="button" class="map-tool-btn landscape" title="경관보기"></button>
+						<button type="button" class="map-tool-btn visibility" title="가시권보기"></button>
+						<button type="button" class="map-tool-btn sunlight" data-popup="popup-sunlight" title="일조권보기"></button>
+					</div>
+				</div>
+				<div class="map-control">
+					<button type="button" class="compass-btn"><span class="compass" style="transform: rotate(0deg);"></span></button>
+					<div class="ctrl-group zoom">
+						<button type="button" class="ctrl-btn zoomin">+</button>
+						<button type="button" class="ctrl-btn zoomout">-</button>
+					</div>
+					<button type="button" class="ctrl-btn earth" title="지구"></button>
+					<div class="ctrl-group dimension">
+						<span class="ctrl-radio">
+							<input type="radio" id="type2d2" name="ctrlType2" checked="checked">
+							<label for="type2d2">2D</label>
+						</span>
+						<span class="ctrl-radio">
+							<input type="radio" id="type3d2" name="ctrlType2">
+							<label for="type3d2">3D</label>
+						</span>
+					</div>
+				</div>
+				<div id="map2" class="map"></div>
+			</div>
+			<div class="map-wrap div4">
+				<div class="map-aside">
+					<div class="map-menu">
+						<ul class="menu-bar">
+							<li><button type="button" class="bar-btn" data-menu="barCont3-01">검색</button></li>
+							<li><button type="button" class="bar-btn" data-menu="barCont3-02">레이어</button></li>
+							<li><button type="button" class="bar-btn" data-menu="barCont3-03">분석</button></li>
+						</ul>
+						<div class="menu-cont">
+							<div class="bar-cont barCont3-01">
+								<div class="cont-head">검색</div>
+								<div class="cont-body">
+									<ul class="tab-group" data-tab="tabSrch">
+										<li class="active"><button type="button" class="tab-link">명칭</button></li>
+										<li><button type="button" class="tab-link">tab2</button></li>
+										<li><button type="button" class="tab-link">tab3</button></li>
+									</ul>
+									<div class="tab-content" data-tab="tabSrch">
+										<div>
+											<div class="search-box">
+												<div class="srch-group">
+													<input type="text" class="form-control" placeholder="검색어 입력">
+													<button type="button" class="srch-btn" title="검색"></button>
+												</div>
+											</div>
+											<!-- 검색어 입력 전 / 검색 결과가 없는 경우
+											<div class="search-nodata">
+												<p>검색어를 입력해주세요</p>
+											</div> 
+											-->
+											<!-- 검색 결과가 있는 경우 -->
+											<div class="search-result">
+												<p class="srch-num">검색결과 : <strong>111</strong></p>
+												<div class="mCustomScrollbar-y">
+													<ul class="srch-result-list">
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77 강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2 평창읍 하리 210-2 평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="pagination">
+													<a href="javascript:void(0);" class="prev" title="이전"></a>
+													<strong class="current">1</strong>
+													<a href="javascript:void(0);">2</a>
+													<a href="javascript:void(0);">3</a>
+													<a href="javascript:void(0);">4</a>
+													<a href="javascript:void(0);">5</a>
+													<a href="javascript:void(0);" class="next" title="다음"></a>
+												</div>
+											</div>
+										</div>
+										<div>tab2</div>
+										<div>tab3</div>
+									</div>
+								</div>
+							</div>
+							<div class="bar-cont barCont3-02">
+								<div class="cont-head">레이어</div>
+								<div class="cont-body">
+									<div class="mCustomScrollbar-y">
+										<ul class="layer-list">
+											<li>
+												<div class="layer-dep1-tit">
+													<span class="form-checkbox text">
+														<input type="checkbox" id="layer1">
+														<label for="layer1">건물</label>
+													</span>
+													<button type="button" class="layer-list-fold" title="열기"></button>
+												</div>
+												<ul class="layer-dep2-list">
+													<li>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer1-1">
+															<label for="layer1-1">건물</label>
+														</span>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<div class="layer-dep1-tit">
+													<span class="form-checkbox text">
+														<input type="checkbox" id="layer2">
+														<label for="layer2">교통</label>
+													</span>
+													<button type="button" class="layer-list-fold" title="열기"></button>
+												</div>
+												<ul class="layer-dep2-list">
+													<li>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer2-1">
+															<label for="layer2-1">교량</label>
+														</span>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer2-1">
+															<label for="layer2-1">교량</label>
+														</span>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="bar-cont barCont3-03">
+								<div class="cont-head">분석</div>
+								<div class="cont-body">
+									<div class="mCustomScrollbar-y">
+										<ul class="anal-list">
+											<li><button type="button" class="btn" data-popup="popup-sunlight">일조권분석</button></li>
+											<li><button type="button" class="btn" data-popup="popup-layout">기본 팝업</button></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="menu-cont-btn" title="열기"></button>
+						</div>
+					</div>
+				</div>
+				<div class="map-tool">
+					<button type="button" class="map-tool-btn initial" title="초기화"></button>
+					<div class="btn-group">
+						<button type="button" class="map-tool-btn distance" title="거리"></button>
+						<button type="button" class="map-tool-btn area" title="면적"></button>
+						<button type="button" class="map-tool-btn height" title="높이"></button>
+						<button type="button" class="map-tool-btn move" title="이동"></button>
+						<button type="button" class="map-tool-btn landscape" title="경관보기"></button>
+						<button type="button" class="map-tool-btn visibility" title="가시권보기"></button>
+						<button type="button" class="map-tool-btn sunlight" data-popup="popup-sunlight" title="일조권보기"></button>
+					</div>
+				</div>
+				<div class="map-control">
+					<button type="button" class="compass-btn"><span class="compass" style="transform: rotate(0deg);"></span></button>
+					<div class="ctrl-group zoom">
+						<button type="button" class="ctrl-btn zoomin">+</button>
+						<button type="button" class="ctrl-btn zoomout">-</button>
+					</div>
+					<button type="button" class="ctrl-btn earth" title="지구"></button>
+					<div class="ctrl-group dimension">
+						<span class="ctrl-radio">
+							<input type="radio" id="type2d3" name="ctrlType3" checked="checked">
+							<label for="type2d3">2D</label>
+						</span>
+						<span class="ctrl-radio">
+							<input type="radio" id="type3d3" name="ctrlType3">
+							<label for="type3d3">3D</label>
+						</span>
+					</div>
+				</div>
+				<div id="map3" class="map"></div>
+			</div>
+			<div class="map-wrap div4">
+				<div class="map-aside">
+					<div class="map-menu">
+						<ul class="menu-bar">
+							<li><button type="button" class="bar-btn" data-menu="barCont4-01">검색</button></li>
+							<li><button type="button" class="bar-btn" data-menu="barCont4-02">레이어</button></li>
+							<li><button type="button" class="bar-btn" data-menu="barCont4-03">분석</button></li>
+						</ul>
+						<div class="menu-cont">
+							<div class="bar-cont barCont4-01">
+								<div class="cont-head">검색</div>
+								<div class="cont-body">
+									<ul class="tab-group" data-tab="tabSrch">
+										<li class="active"><button type="button" class="tab-link">명칭</button></li>
+										<li><button type="button" class="tab-link">tab2</button></li>
+										<li><button type="button" class="tab-link">tab3</button></li>
+									</ul>
+									<div class="tab-content" data-tab="tabSrch">
+										<div>
+											<div class="search-box">
+												<div class="srch-group">
+													<input type="text" class="form-control" placeholder="검색어 입력">
+													<button type="button" class="srch-btn" title="검색"></button>
+												</div>
+											</div>
+											<!-- 검색어 입력 전 / 검색 결과가 없는 경우
+											<div class="search-nodata">
+												<p>검색어를 입력해주세요</p>
+											</div> 
+											-->
+											<!-- 검색 결과가 있는 경우 -->
+											<div class="search-result">
+												<p class="srch-num">검색결과 : <strong>111</strong></p>
+												<div class="mCustomScrollbar-y">
+													<ul class="srch-result-list">
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+														<li>
+															<a href="javascript:void(0);">
+																<p class="srch-name">평창군청</p>
+																<div class="srch-add">
+																	<p class="road"><span class="badge">도로명</span>강원 평창군 평창읍 군청길 77 강원 평창군 평창읍 군청길 77</p>
+																	<p class="jibun"><span class="badge">지&nbsp;&nbsp;번</span>평창읍 하리 210-2 평창읍 하리 210-2 평창읍 하리 210-2</p>
+																</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="pagination">
+													<a href="javascript:void(0);" class="prev" title="이전"></a>
+													<strong class="current">1</strong>
+													<a href="javascript:void(0);">2</a>
+													<a href="javascript:void(0);">3</a>
+													<a href="javascript:void(0);">4</a>
+													<a href="javascript:void(0);">5</a>
+													<a href="javascript:void(0);" class="next" title="다음"></a>
+												</div>
+											</div>
+										</div>
+										<div>tab2</div>
+										<div>tab3</div>
+									</div>
+								</div>
+							</div>
+							<div class="bar-cont barCont4-02">
+								<div class="cont-head">레이어</div>
+								<div class="cont-body">
+									<div class="mCustomScrollbar-y">
+										<ul class="layer-list">
+											<li>
+												<div class="layer-dep1-tit">
+													<span class="form-checkbox text">
+														<input type="checkbox" id="layer1">
+														<label for="layer1">건물</label>
+													</span>
+													<button type="button" class="layer-list-fold" title="열기"></button>
+												</div>
+												<ul class="layer-dep2-list">
+													<li>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer1-1">
+															<label for="layer1-1">건물</label>
+														</span>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<div class="layer-dep1-tit">
+													<span class="form-checkbox text">
+														<input type="checkbox" id="layer2">
+														<label for="layer2">교통</label>
+													</span>
+													<button type="button" class="layer-list-fold" title="열기"></button>
+												</div>
+												<ul class="layer-dep2-list">
+													<li>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer2-1">
+															<label for="layer2-1">교량</label>
+														</span>
+														<span class="form-checkbox text sm">
+															<input type="checkbox" id="layer2-1">
+															<label for="layer2-1">교량</label>
+														</span>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="bar-cont barCont4-03">
+								<div class="cont-head">분석</div>
+								<div class="cont-body">
+									<div class="mCustomScrollbar-y">
+										<ul class="anal-list">
+											<li><button type="button" class="btn" data-popup="popup-sunlight">일조권분석</button></li>
+											<li><button type="button" class="btn" data-popup="popup-layout">기본 팝업</button></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="menu-cont-btn" title="열기"></button>
+						</div>
+					</div>
+				</div>
+				<div class="map-tool">
+					<button type="button" class="map-tool-btn initial" title="초기화"></button>
+					<div class="btn-group">
+						<button type="button" class="map-tool-btn distance" title="거리"></button>
+						<button type="button" class="map-tool-btn area" title="면적"></button>
+						<button type="button" class="map-tool-btn height" title="높이"></button>
+						<button type="button" class="map-tool-btn move" title="이동"></button>
+						<button type="button" class="map-tool-btn landscape" title="경관보기"></button>
+						<button type="button" class="map-tool-btn visibility" title="가시권보기"></button>
+						<button type="button" class="map-tool-btn sunlight" data-popup="popup-sunlight" title="일조권보기"></button>
+					</div>
+				</div>
+				<div class="map-control">
+					<button type="button" class="compass-btn"><span class="compass" style="transform: rotate(0deg);"></span></button>
+					<div class="ctrl-group zoom">
+						<button type="button" class="ctrl-btn zoomin">+</button>
+						<button type="button" class="ctrl-btn zoomout">-</button>
+					</div>
+					<button type="button" class="ctrl-btn earth" title="지구"></button>
+					<div class="ctrl-group dimension">
+						<span class="ctrl-radio">
+							<input type="radio" id="type2d4" name="ctrlType4" checked="checked">
+							<label for="type2d4">2D</label>
+						</span>
+						<span class="ctrl-radio">
+							<input type="radio" id="type3d4" name="ctrlType4">
+							<label for="type3d4">3D</label>
+						</span>
+					</div>
+				</div>
+				<div id="map4" class="map"></div>
+			</div>
+		</div>
+		<!-- 일조권보기 -->
+		<div class="popup-panel popup-sunlight">
+			<div class="popup-head">일조권 분석</div>
+			<div class="popup-body">
+				<div class="range-box">
+					<div class="rangeSlider">
+						<span class="ui-slider-handle"><span class="slider-num">00:00</span></span>
+					</div>
+					<div class="slider-grid">
+						<span>00:00</span>
+						<span>12:50</span>
+					</div>
+					<script>
+						$(function(){
+							var handle = $(".slider-num");
+							$(".rangeSlider").slider({
+								range: "min",
+								create: function() {
+									handle.text( $( this ).slider( "value" ) );
+								},
+								slide: function( event, ui ) {
+									handle.text( ui.value );
+								}
+							});
+						});
+					</script>
+				</div>
+				<div class="range-option">
+					<div class="col">
+						<span class="opt-tit">날짜선정</span>
+						<div class="datepicker-group"><input type="text" class="datepicker"></div>
+					</div>
+					<div class="col">
+						<span class="opt-tit">시작시간</span>
+						<select class="form-select">
+							<option value="">06시</option>
+						</select>
+						<select class="form-select">
+							<option value="">00분</option>
+						</select>
+					</div>
+					<div class="col">
+						<span class="opt-tit">시작시간</span>
+						<select class="form-select">
+							<option value="">18시</option>
+						</select>
+						<select class="form-select">
+							<option value="">00분</option>
+						</select>
+					</div>
+					<div class="col">
+						<span class="opt-tit">속도간격</span>
+						<select class="form-select">
+							<option value="">1분</option>
+						</select>
+					</div>
+					<div class="col">
+						<span class="play-radio play">
+							<input type="radio" id="playbtn" name="ctrlPlay" title="재생">
+							<label for="playbtn"></label>
+						</span>
+						<span class="play-radio pause">
+							<input type="radio" id="pausebtn" name="ctrlPlay" title="일시정지">
+							<label for="pausebtn"></label>
+						</span>
+						<span class="play-radio stop">
+							<input type="radio" id="stopbtn" name="ctrlPlay" title="정지">
+							<label for="stopbtn"></label>
+						</span>
+					</div>
+					<div class="col">
+						<button type="button" class="icon-btn reset" title="초기화"></button>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="popup-close" title="닫기">X</button>
+		</div>
+		<!-- //일조권보기 -->
+		<div class="popup-panel popup-layout">
+			<div class="popup-head">팝업 레이아웃</div>
+			<div class="popup-body">팝업 내용 입력</div>
+			<button type="button" class="popup-close" title="닫기">X</button>
+		</div>
+	</div>
+	<!-- <script>
+		const map = new ol.Map({
+			layers: [
+				new ol.layer.Tile({
+					source: new ol.source.OSM(),
+				}),
+			],
+			target: 'map1',
+			view: new ol.View({
+				center: [0, 0],
+				zoom: 2,
+			}),
+		});
+
+	</script> -->
+	<script src="../js/map.js"></script>
+</body>
+</html>
