@@ -13,18 +13,53 @@ const map = new ol.Map({
     }),
 });
 
+
+// 지도 줌인/줌아웃 메소드
+//줌인 애니메이션 효과 코드
 const handleZoomInClick = () => {
-    const zoom = map.getView().getZoom() + 1;
+    const zoom = map.getView().getZoom() + 2;
     map.getView().animate({
         zoom,
         duration: 500
     });
 };
 
+//줌인 애니메이션 효과 없는 코드
+// const handleZoomInClick = () => {
+//     const zoom = map.getView().getZoom() + 1;
+//     map.getView().setZoom(zoom);
+// };
+
+//줌아웃 애니메이션 효과 코드
 const handleZoomOutClick = () => {
-    const zoom = map.getView().getZoom() - 1;
+    const zoom = map.getView().getZoom() - 2;
     map.getView().animate({
         zoom,
         duration: 500
+    });
+};
+
+//줌아웃 애니메이션 효과 없는 코드
+// const handleZoomOutClick = () => {
+//     const zoom = map.getView().getZoom() - 1;
+//     map.getView().setZoom(zoom);
+// };
+
+
+// 지도 지정된 좌표로 리셋
+// const center = fromLonLat[127.00169, 37.56421];
+// const center = Point([127.00169, 37.56421]);
+
+var pnt = new ol.geom.Point([127.00169, 37.56421]).transform('EPSG:4326', 'EPSG:3857');
+var center = pnt.getCoordinates();
+
+// const handleHomeClick = () => {
+//     map.getView().setCenter(center);
+// }
+
+const handleHomeClick = () => {
+    map.getView().animate({
+        center,
+        duration: 1500
     });
 };

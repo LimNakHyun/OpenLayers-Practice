@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>지도 레이아웃</title>
+        <script src="../js/common/jquery/jquery-3.4.1.min.js"></script>
+        <!--jquery ui-->
+        <script src="../js/common/jquery-ui/jquery-ui.js"></script>
+        <link rel="stylesheet" href="../js/common/jquery-ui/jquery-ui.css">
+        <!--scrollbar-->
+        <script src="../js/plugin/mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+        <link rel="stylesheet" href="../js/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+        <!--style-->
+        <script src="../js/ui.js"></script>
+
+        <style>
+            #map {
+                width: 600px;
+                height: 650px;
+            }
+            .left {
+                float: left;
+                margin: 2%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map1" class="left"></div>
+        <div class="left">
+            <label>타입 : &nbsp;</label>
+            <select id="type">
+                <option value="Point">점</option>
+                <option value="LineString">선</option>
+                <option value="Polygon">채우는 선</option>
+                <option value="Circle">원형</option>
+                <option value="None">없음</option>
+            </select>
+        </div>
+    </body>
+</html>
